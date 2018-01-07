@@ -1,7 +1,7 @@
 # TODO (in no particular order)
 
 Currently worked on:
-- MPI implementation
+- (Mike) MPI implementation
 
 Still left to do:
 - Get Dieharder to run on the UL HPC Platform
