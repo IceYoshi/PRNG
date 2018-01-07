@@ -22,3 +22,5 @@ Specify `-m x` in order to test with a bigger pool of random numbers. Note that 
 ```
 
 and follow the instructions. Prepare a binary file in advance, e.g. `./rng_seq -n <bitStreamLength> > random.dat`
+
+Results can be found under **experiments/AlgorithmTesting/finalAnalysisReport.txt**
