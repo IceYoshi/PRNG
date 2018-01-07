@@ -15,7 +15,9 @@ Useful dieharder options (`x` stands for any number):
 
 **2. For the NIST test suite:**
 
-- Prepare a binary file in advance, e.g. `./rng_seq -n <bitStreamLength> > random.dat`
-- Execute `./assess <bitStreamLength>` and follow the instructions.
+- Prepare a binary file in advance, e.g. `./rng_seq -n <bitStreamLength> > data/random.dat`
+- Execute `./assess <bitStreamLength>` and follow the instructions, e.g:
+
+    *Input file(0) -> data/random.dat -> All(1) -> Default(0) -> Bitstreams(10) -> Binary(1)*
 
 After successful completion, results can be found under *experiments/AlgorithmTesting/finalAnalysisReport.txt*
