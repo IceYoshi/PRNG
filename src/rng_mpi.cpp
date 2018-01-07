@@ -11,6 +11,7 @@
 #include "Generator.hpp"
 
 namespace mpi = boost::mpi;
+using namespace std;
 
 int id = 0; // MPI id for the current process (set global to be used in xprintf)
 
@@ -30,7 +31,25 @@ int main(int argc, char *argv[]) {
 
 	world.barrier();
 
-	xprintf("Test output\n");
+	//-----------------------------------------------
+	unsigned int bitSize = 16;
+
+	// boost::mt19937 wrapper
+	Random::Generator<int> g(0, (1 << bitSize) - 1, id);
+
+	// Initialize seed for rand()
+	//srand(time(NULL));
+
+	while (true) {
+		// Generate random number between 0 and 2^16 - 1 (25535)
+		//int x = rand() % (1 << bitSize);
+		int x = g();
+
+		//Print out the raw binary representation of the generated number
+		cout << (char)((0xff00 & x) >> 8);
+		cout << (char)(0x00ff & x);
+	}
+	//-----------------------------------------------
 
 	return 0;
 }

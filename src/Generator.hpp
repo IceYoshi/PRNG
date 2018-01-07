@@ -11,8 +11,8 @@ namespace Random {
 		boost::random::uniform_int_distribution<> _dist; /**< type of distribution */
 		Engine _rng; /** Random Number Generator */
 		public:
-			Generator(const IntType & min = IntType(0), const IntType & max = IntType(100)) :
-				_dist(min, max), _rng(std::time(nullptr)) {}
+			Generator(const IntType & min = IntType(0), const IntType & max = IntType(100), std::time_t seed = std::time(nullptr)) :
+				_dist(min, max), _rng(seed) {}
 			virtual ~Generator() {}
 			IntType min() const { return _dist.min(); }
 			IntType max() const { return _dist.max(); }

@@ -4,7 +4,7 @@ In order to test the quality of our PRNG implementation using dieharder:
 ```
 ./rng_seq | dieharder -g 200 -a
 
-mpirun -np 4 rng_mpi | dieharder -g 200 -a
+mpirun -np <numOfProcesses> rng_mpi | dieharder -g 200 -a
 ```
 
 Useful dieharder options (`x` stands for any number):
