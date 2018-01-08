@@ -10,8 +10,8 @@ include_directories(${MPI_INCLUDE_PATH})
 include_directories (SYSTEM ${Boost_INCLUDE_DIR})
 link_directories (${Boost_LIBRARY_DIRS})
 
-add_executable(rng_seq rng_seq.cpp)
+add_executable(rng_seq rng_seq.cpp MRG32k3a.c)
 target_link_libraries(rng_seq ${Boost_LIBRARIES})
 
-add_executable(rng_mpi rng_mpi.cpp)
+add_executable(rng_mpi rng_mpi.cpp MRG32k3a.c)
 target_link_libraries(rng_mpi ${Boost_LIBRARIES} ${MPI_LIBRARIES})

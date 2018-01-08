@@ -6,6 +6,11 @@
 
 #include <boost/program_options.hpp>
 
+#include "MRG32k3a.c"
+
+double MRG32k3a(void);
+void setMRGSeed(int);
+
 namespace po = boost::program_options;
 using namespace std;
 
@@ -36,16 +41,20 @@ int main(int argc, char * argv[]){
 	// Initialize rng and set seed
 	srand(time(NULL));
 	mt19937 mt(time(NULL));
+	setMRGSeed(time(NULL));
 
 	unsigned long count = 0;
-	int x;
+	unsigned long x;
 	while (n == 0 || count++ < n) {
 		// Generate random number between 0 and 2^32 - 1
-		if (g == 0) {	// rand()
+		if (g == 0) {		// rand()
 			x = rand();
 		}
 		else if (g == 1) {	// mt19937
 			x = mt();
+		}
+		else if (g == 2) {	// MRG32k3a
+			x = (unsigned long)(MRG32k3a() * (1UL << 32));
 		}
 		else {
 			cout << "Error: Undefined generator " << g << endl;

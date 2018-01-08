@@ -10,6 +10,11 @@
 
 #include <boost/program_options.hpp>
 
+#include "MRG32k3a.c"
+
+double MRG32k3a(void);
+void setMRGSeed(int);
+
 namespace po = boost::program_options;
 namespace mpi = boost::mpi;
 using namespace std;
@@ -35,7 +40,7 @@ int main(int argc, char *argv[]) {
 		desc.add_options()
 			("help,h", "Display this help message")
 			("streamlength,n", po::value<unsigned long>()->default_value(0), "Number of bytes to be generated. Set to 0 for infinite execution.")
-			("generator,g", po::value<unsigned int>()->default_value(0), "Type of generator. 0 for rand(), 1 for mt19937")
+			("generator,g", po::value<unsigned int>()->default_value(0), "Type of generator. 0 for rand(), 1 for mt19937, 2 for MRG32k3a")
 			("mode,m", po::value<unsigned int>()->default_value(0), "Method for parallelism. 0 for different parameter sets, 1 for block-splitting, 2 for leap-frogging")
 			;
 
@@ -68,20 +73,23 @@ int main(int argc, char *argv[]) {
 	if (m == 0) {
 		srand(seed + id);
 		mt = mt19937(seed + id);
+		setMRGSeed(seed + id);
 	}
 	else if (m == 1) {
 		srand(seed);
 		mt = mt19937(seed);
+		setMRGSeed(seed);
 		int skipAhead = ceil((id * n * 1.0) / world.size());
 		for (int i = 0; i < skipAhead; i++) {
-			if (g == 0) rand(); else mt();
+			if (g == 0) rand(); else if (g == 1) mt(); else MRG32k3a();
 		}
 	}
 	else if (m == 2) {
 		srand(seed);
 		mt = mt19937(seed);
+		setMRGSeed(seed);
 		for (int i = 0; i < id; i++) {
-			if (g == 0) rand(); else mt();
+			if (g == 0) rand(); else if (g == 1) mt(); else MRG32k3a();
 		}
 	}
 	else {
@@ -90,14 +98,17 @@ int main(int argc, char *argv[]) {
 	}
 
 	unsigned long count = 0;
-	int x;
+	unsigned long x;
 	while (n == 0 || count++ < n) {
 		// Generate random number between 0 and 2^32 - 1
-		if (g == 0) {	// rand()
+		if (g == 0) {		// rand()
 			x = rand();
 		}
 		else if (g == 1) {	// mt19937
 			x = mt();
+		}
+		else if (g == 2) {	// MRG32k3a
+			x = (unsigned long)( MRG32k3a() * (1UL << 32) );
 		}
 		else {
 			cout << "Error: Undefined generator " << g << endl;
