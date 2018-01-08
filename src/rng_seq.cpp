@@ -24,6 +24,7 @@ int main(int argc, char * argv[]){
 		("help,h", "Display this help message")
 		("streamlength,n", po::value<unsigned long>()->default_value(0), "Number of bytes to be generated. Set to 0 for infinite execution.")
 		("generator,g", po::value<unsigned int>()->default_value(0), "Type of generator. 0 for rand(), 1 for mt19937")
+		("verbose,v", "Print on the console human-readable generated numbers")
 		;
 
 	po::variables_map vm;
@@ -37,6 +38,7 @@ int main(int argc, char * argv[]){
 
 	unsigned long n = vm["streamlength"].as<unsigned long>();
 	unsigned int g = vm["generator"].as<unsigned int>();
+	bool v = vm.count("verbose");
 
 	// Initialize rng and set seed
 	srand(time(NULL));
@@ -62,10 +64,15 @@ int main(int argc, char * argv[]){
 		}
 		
 		//Print out the raw binary representation of the generated number
-		cout << (char)((0xff000000 & x) >> 24);
-		cout << (char)((0x00ff0000 & x) >> 16);
-		cout << (char)((0x0000ff00 & x) >> 8);
-		cout << (char)(0x000000ff & x);
+		if (v) {
+			cout << x << endl;
+		}
+		else {
+			cout << (char)((0xff000000 & x) >> 24);
+			cout << (char)((0x00ff0000 & x) >> 16);
+			cout << (char)((0x0000ff00 & x) >> 8);
+			cout << (char)(0x000000ff & x);
+		}
 	}
 
     return 0;
