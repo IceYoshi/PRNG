@@ -1,7 +1,7 @@
 # TODO (in no particular order)
 
 **Currently worked on**:
-- (Mike) C implementation of Pierre L'Ecuyer's MRG32k3a RNG
+- (Mike) Test/bugfix current RNG implementations
 
 **Still left to do**:
 - Get Dieharder to run on the UL HPC Platform
