@@ -2,10 +2,9 @@
 #include <stdio.h>      /* printf, scanf, puts, NULL */
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
+#include <random>		/* mt19937 */
 
 #include <boost/program_options.hpp>
-
-#include "Generator.hpp"
 
 namespace po = boost::program_options;
 using namespace std;
@@ -34,33 +33,30 @@ int main(int argc, char * argv[]){
 	unsigned long n = vm["streamlength"].as<unsigned long>();
 	unsigned int g = vm["generator"].as<unsigned int>();
 
-	unsigned int bitSize = 16;
-
-	// Initialize seed for rand()
+	// Initialize rng and set seed
 	srand(time(NULL));
-
-	// boost::mt19937 wrapper
-	Random::Generator<int> mt(0, (1 << bitSize) - 1);
+	mt19937 mt(time(NULL));
 
 	unsigned long count = 0;
 	int x;
 	while (n == 0 || count++ < n) {
-		// Generate random number between 0 and 2^16 - 1 (25535)
-		switch (g) {
-		case 0: // rand()
-			x = rand() % (1 << bitSize);
-			break;
-		case 1:	// mt19937
+		// Generate random number between 0 and 2^32 - 1
+		if (g == 0) {	// rand()
+			x = rand();
+		}
+		else if (g == 1) {	// mt19937
 			x = mt();
-			break;
-		default:
+		}
+		else {
 			cout << "Error: Undefined generator " << g << endl;
 			return 2;
 		}
 		
 		//Print out the raw binary representation of the generated number
-		cout << (char)((0xff00 & x) >> 8);
-		cout << (char)(0x00ff & x);
+		cout << (char)((0xff000000 & x) >> 24);
+		cout << (char)((0x00ff0000 & x) >> 16);
+		cout << (char)((0x0000ff00 & x) >> 8);
+		cout << (char)(0x000000ff & x);
 	}
 
     return 0;
