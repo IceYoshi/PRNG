@@ -23,7 +23,7 @@ int main(int argc, char * argv[]){
 	desc.add_options()
 		("help,h", "Display this help message")
 		("streamlength,n", po::value<unsigned long>()->default_value(0), "Number of bytes to be generated. Set to 0 for infinite execution.")
-		("generator,g", po::value<unsigned int>()->default_value(0), "Type of generator. 0 for rand(), 1 for mt19937")
+		("generator,g", po::value<unsigned int>()->default_value(0), "Type of generator. 0 for rand(), 1 for mt19937, 2 for MRG32k3a")
 		("verbose,v", "Print on the console human-readable generated numbers")
 		;
 

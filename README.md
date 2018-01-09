@@ -5,8 +5,6 @@
 ./rng_seq | dieharder -g 200 -a
 
 mpirun -np <numOfProcesses> rng_mpi | dieharder -g 200 -a
-
-srun -n <numOfProcesses> rng_mpi | dieharder -g 200 -a
 ```
 
 Useful dieharder options (`x` stands for any number):
