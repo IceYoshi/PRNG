@@ -63,6 +63,8 @@ int main(int argc, char *argv[]) {
 
 	world.barrier();
 
+
+
 	mpi::broadcast(world, n, 0);
 	mpi::broadcast(world, g, 0);
 	mpi::broadcast(world, m, 0);
@@ -70,6 +72,10 @@ int main(int argc, char *argv[]) {
 	mpi::broadcast(world, v, 0);
 
 	if (h) return 1;
+
+	unsigned long rest = n % world.size();
+	n /= world.size();
+	if (id == 0) n += rest;
 
 	//-----------------------------------------------
 
@@ -105,6 +111,7 @@ int main(int argc, char *argv[]) {
 
 	unsigned long count = 0;
 	unsigned long x;
+	if (n == 0 && rest != 0) return 0;
 	while (n == 0 || count++ < n) {
 		// Generate random number between 0 and 2^32 - 1
 		if (g == 0) {		// rand()
