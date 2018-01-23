@@ -7,6 +7,7 @@
 mpirun -np <numOfProcesses> rng_mpi | dieharder -g 200 -a
 ```
 
+Where `-g 200` refers to stdin_input_raw.
 Useful dieharder options (`x` stands for any number):
 - Replace `-a` with `-d x` in order to only execute a particular test. `-d -1` in order to list all available tests.
 - Specify `-m x` in order to test with a bigger pool of random numbers. Note that the test will also take `x`-times longer to run.
