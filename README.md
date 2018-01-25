@@ -4,7 +4,7 @@
 ```
 ./rng_seq | dieharder -g 200 -a
 
-mpirun -np <numOfProcesses> rng_mpi | dieharder -g 200 -a
+srun -n $SLURM_NTASKS ./rng_mpi | dieharder -g 200 -a
 ```
 
 Where `-g 200` refers to the universal stdin_input_raw interface (expects continuous stream of presumably random bits).
