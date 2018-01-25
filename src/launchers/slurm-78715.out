@@ -1,0 +1,34 @@
+Start of benchmarking with g=0 (cont.)
+
+real	1m8.617s
+user	31m22.755s
+sys	0m2.504s
+
+real	1m4.288s
+user	29m18.407s
+sys	0m2.909s
+
+real	0m55.046s
+user	25m7.673s
+sys	0m2.688s
+
+real	0m48.566s
+user	21m59.554s
+sys	0m2.938s
+
+real	0m43.301s
+user	19m33.594s
+sys	0m3.136s
+
+real	0m39.051s
+user	17m36.603s
+sys	0m3.260s
+
+real	0m35.734s
+user	16m0.910s
+sys	0m3.560s
+
+real	0m35.400s
+user	15m43.665s
+sys	0m3.536s
+End of benchmarking

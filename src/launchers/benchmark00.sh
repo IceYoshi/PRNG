@@ -4,12 +4,12 @@
 #SBATCH --mail-user=mike.pereira.001@student.uni.lu
 #SBATCH -N 1
 #SBATCH --ntasks-per-node=28
-#SBATCH --time=0-01:00:00
+#SBATCH --time=0-02:00:00
 #SBATCH -p batch
 #SBATCH --qos=qos-batch
 
 module purge
-module load toolchain/foss
+module load toolchain/foss/2017a
 module load devel/Boost/1.65.1-foss-2017a
 
 cd ~/PRNG/build
