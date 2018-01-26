@@ -10,21 +10,21 @@ sys	0m1.390s
 
 real    4m36.556s
 user    45m58.339s
-sys     0m0.486s
+sys 0m0.486s
 
 real    3m20.970s
 user    46m0.586s
-sys     0m1.014s
+sys 0m1.014s
 
 real    3m20.315s
 user    46m4.966s
-sys     0m1.946s
+sys 0m1.946s
 
 real    3m18.732s
 user    46m5.087s
-sys     0m1.603s
+sys 0m1.603s
 
 real    3m21.233s
 user    46m3.747s
-sys     0m1.762s
+sys 0m1.762s
 End of benchmarking
