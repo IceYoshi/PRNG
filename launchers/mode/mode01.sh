@@ -1,5 +1,5 @@
 #!/bin/bash -l
-#SBATCH -J PRNGBenchmark1
+#SBATCH -J PRNGBenchmark
 #SBATCH --mail-type=end,fail
 #SBATCH --mail-user=mike.pereira.001@student.uni.lu
 #SBATCH -N 2
@@ -14,15 +14,18 @@ module load devel/Boost/1.65.1-foss-2017a
 
 cd ~/PRNG/build
 
+# Extract and output real time (in seconds)
+TIMEFORMAT=%R
+
 echo "Start of mode test with m=0 (cont.)"
 
-time mpirun -np 28 ./rng_mpi -g 1 -m 0 -n 100000000000 &> /dev/null
-time mpirun -np 30 ./rng_mpi -g 1 -m 0 -n 100000000000 &> /dev/null
-time mpirun -np 35 ./rng_mpi -g 1 -m 0 -n 100000000000 &> /dev/null
-time mpirun -np 40 ./rng_mpi -g 1 -m 0 -n 100000000000 &> /dev/null
-time mpirun -np 45 ./rng_mpi -g 1 -m 0 -n 100000000000 &> /dev/null
-time mpirun -np 50 ./rng_mpi -g 1 -m 0 -n 100000000000 &> /dev/null
-time mpirun -np 55 ./rng_mpi -g 1 -m 0 -n 100000000000 &> /dev/null
-time mpirun -np 56 ./rng_mpi -g 1 -m 0 -n 100000000000 &> /dev/null
+time srun -n 28 ./rng_mpi -g 1 -m 0 -n 100000000000 &> /dev/null
+time srun -n 30 ./rng_mpi -g 1 -m 0 -n 100000000000 &> /dev/null
+time srun -n 35 ./rng_mpi -g 1 -m 0 -n 100000000000 &> /dev/null
+time srun -n 40 ./rng_mpi -g 1 -m 0 -n 100000000000 &> /dev/null
+time srun -n 45 ./rng_mpi -g 1 -m 0 -n 100000000000 &> /dev/null
+time srun -n 50 ./rng_mpi -g 1 -m 0 -n 100000000000 &> /dev/null
+time srun -n 55 ./rng_mpi -g 1 -m 0 -n 100000000000 &> /dev/null
+time srun -n 56 ./rng_mpi -g 1 -m 0 -n 100000000000 &> /dev/null
 
 echo "End of benchmarking"
