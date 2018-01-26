@@ -1,5 +1,0 @@
-time mpirun -np 20 rng_mpi -g 1 -m 2 -n 100000000 &> /dev/null
-time ./rng_seq -g 0 -n 10000 &> /dev/null
-./rng_seq -g 0 > data/seq_g0.dat
-./rng_seq -g 0 | dieharder -g 200 -a > dieharder_seq_g0.txt
-mpirun -np 4 rng_mpi -g 1 -m 0 -n 1000000 > data/mpi_m0.dat
