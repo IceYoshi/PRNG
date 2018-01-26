@@ -4,7 +4,7 @@
 #SBATCH --mail-user=mike.pereira.001@student.uni.lu
 #SBATCH -N 2
 #SBATCH --ntasks-per-node=28
-#SBATCH --time=0-02:00:00
+#SBATCH --time=0-05:00:00
 #SBATCH -p batch
 #SBATCH --qos=qos-batch
 

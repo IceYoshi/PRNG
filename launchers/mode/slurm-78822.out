@@ -1,0 +1,30 @@
+Start of mode test with m=2
+
+real	37m30.072s
+user	37m29.794s
+sys	0m0.150s
+
+real	22m54.589s
+user	111m52.124s
+sys	0m2.875s
+
+real	24m35.450s
+user	245m47.338s
+sys	0m0.754s
+
+real	24m42.447s
+user	336m57.270s
+sys	0m3.946s
+
+real	30m11.979s
+user	436m18.782s
+sys	0m5.493s
+
+real	38m35.967s
+user	541m43.176s
+sys	0m11.008s
+
+real	43m44.610s
+user	601m19.041s
+sys	0m12.958s
+End of benchmarking
