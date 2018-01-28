@@ -39,3 +39,22 @@ grid(col = "lightgray", lty = "dotted", lwd = par("lwd"), equilogs = TRUE)
 legend(35, 4500, legend=c("Different parameter sets", "Block-splitting", "Leap-frogging"), col=c("black", "red", "blue"), pch=c(19,6, 8))
 
 abline(v = 28, col="black")
+
+#-----------------------------------------------------------------------------------------------------------------
+# Execution speed between different sequential PRNGs
+x = c(100,1000,10000,100000,1000000,10000000,100000000,1000000000,10000000000, 100000000000)
+t0 = c(0.010,0.008,0.008,0.009,0.018,0.101,0.936,9.207,91.863,876.140)
+t1 = c(0.010,0.008,0.009,0.009,0.014,0.066,0.585,5.677,56.796,540.635)
+t2 = c(0.010,0.008,0.008,0.011,0.035,0.280,2.717,27.118,267.944,2511.625)
+
+plot(x, t0, log="xy", type="o", pch=19, las=0, ylim=c(0.01, 3000), xlim=c(100,100000000000), 
+    main="Execution speed between different sequential PRNGs",
+    xlab="Number of random numbers (log scale)", 
+    ylab="Execution time in s (log scale)"
+)
+
+lines(x, y=t1, col="red", type="o", pch=6)
+lines(x, y=t2, col="blue", type="o", pch=8)
+
+grid(col = "lightgray", lty = "dotted", lwd = par("lwd"), equilogs = TRUE)
+legend(100, 2500, legend=c("rand()", "mt19937", "MRG32k3a"), col=c("black", "red", "blue"), pch=c(19,6, 8))
