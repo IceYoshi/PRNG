@@ -1,0 +1,12 @@
+# name avg_runtime
+"combinedLCGTaus" 7794.300000
+"drand48gpu" 3729.200000
+"kiss07" 4822.400000
+"lfsr113" 9602.000000
+"md5" 81626.000000
+"mtgp" 11187.100000
+"park_miller" 59112.400000
+"precompute" 9167.000000
+"ranecu" 11701.900000
+"tea" 122757.600000
+"tt800" 12976.000000

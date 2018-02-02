@@ -1,0 +1,3 @@
+/usr/local/cuda-9.1/bin/nvcc -c -I/usr/local/cuda-9.1/include check_GPU.cu
+gcc -L/usr/local/cuda-9.1/lib64 check_GPU.o -lcudart -o check_GPU
+./check_GPU
